@@ -13,78 +13,92 @@
         nav a:hover { color: #1E88E5; }
         section { max-width: 900px; margin: 40px auto; padding: 20px; background: #111; border-radius: 10px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out; }
         h2 { color: #1E88E5; text-align: center; }
-        .lang-btn { display: block; margin: 20px auto; padding: 10px; background: #1E88E5; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        form { max-width: 400px; margin: auto; text-align: left; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 5px; background: #222; color: white; }
+        button { background: #1E88E5; color: white; padding: 12px; border: none; cursor: pointer; border-radius: 5px; width: 100%; transition: background 0.3s ease; }
+        button:hover { background: #1565C0; }
+        .services { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .service { background: #222; padding: 20px; width: 45%; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); text-align: center; transition: transform 0.3s ease; }
+        .service:hover { transform: scale(1.05); }
+        .service i { font-size: 35px; color: #1E88E5; margin-bottom: 15px; }
+        .map-container { text-align: center; margin-top: 20px; }
+        iframe { width: 100%; height: 300px; border-radius: 10px; }
+        footer { background: #111; color: white; text-align: center; padding: 20px; margin-top: 20px; }
+        .visible { opacity: 1; transform: translateY(0); }
+        .horario { text-align: center; margin-top: 20px; font-size: 18px; background: #222; padding: 15px; border-radius: 10px; }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.2 });
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
 </head>
 <body>
-    <button class="lang-btn" onclick="changeLanguage()">Cambiar Idioma</button>
-    <header id="header">PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos</header>
+    <header>PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos</header>
     <nav>
-        <a href="#servicios" id="nav-services">Servicios</a>  
-        <a href="#contacto" id="nav-contact">Contacto</a>
-        <a href="#ubicacion" id="nav-location">Ubicación</a>
+        <a href="#servicios">Servicios</a>  
+        <a href="#contacto">Contacto</a>
+        <a href="#ubicacion">Ubicación</a>
     </nav>
     <section id="servicios">
-        <h2 id="services-title">Nuestros Servicios</h2>
-        <p id="services-desc">Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.</p>
+        <h2>Nuestros Servicios</h2>
+        <div class="services">
+            <div class="service">
+                <i class="fas fa-tools"></i>
+                <h3>Reparación de Computadoras</h3>
+                <p>Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-cogs"></i>
+                <h3>Mantenimiento Preventivo</h3>
+                <p>Optimizamos el rendimiento de tu equipo con limpieza y actualizaciones.</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-shield-virus"></i>
+                <h3>Eliminación de Virus</h3>
+                <p>Eliminamos malware y protegemos tu sistema contra amenazas futuras.</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-download"></i>
+                <h3>Instalación de Software</h3>
+                <p>Instalamos y configuramos software según tus necesidades.</p>
+            </div>
+        </div>
     </section>
     <section id="contacto">
-        <h2 id="contact-title">Contáctanos</h2>
-        <p id="contact-desc">¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!</p>
+        <h2>Contáctanos</h2>
+        <p>¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!</p>
+        <form action="https://formspree.io/f/mjkgprrz" method="POST">
+            <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            <input type="email" name="email" placeholder="Tu Correo" required>
+            <textarea name="mensaje" placeholder="Tu Mensaje" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
     </section>
     <section id="ubicacion">
-        <h2 id="location-title">Ubicación</h2>
-        <p id="location-desc"><strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España.</p>
+        <h2>Ubicación</h2>
+        <p><strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España.</p>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.3070145446516!2d-2.909918684739903!3d43.25978997913719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e5078e8c3b7b7%3A0x5e0a0278071f1f9a!2sCentro%20Formativo%20Otxarkoaga!5e0!3m2!1ses!2ses!4v1647268987975!5m2!1ses!2ses" 
+                allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </section>
-    <script>
-        const translations = {
-            es: {
-                header: "PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos",
-                "nav-services": "Servicios",
-                "nav-contact": "Contacto",
-                "nav-location": "Ubicación",
-                "services-title": "Nuestros Servicios",
-                "services-desc": "Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.",
-                "contact-title": "Contáctanos",
-                "contact-desc": "¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!",
-                "location-title": "Ubicación",
-                "location-desc": "<strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España."
-            },
-            en: {
-                header: "PCDoctor - Computer Repair and Maintenance",
-                "nav-services": "Services",
-                "nav-contact": "Contact",
-                "nav-location": "Location",
-                "services-title": "Our Services",
-                "services-desc": "We solve hardware and software problems on desktops and laptops.",
-                "contact-title": "Contact Us",
-                "contact-desc": "Need help with your computer? Send us a message!",
-                "location-title": "Location",
-                "location-desc": "<strong>Address:</strong> Otxarkoaga Training Center, C/ Camino Arbolantxa 57 48004 Bilbao, Spain."
-            },
-            eu: {
-                header: "PCDoctor - Ordenagailuen konponketa eta mantentzea",
-                "nav-services": "Zerbitzuak",
-                "nav-contact": "Kontaktua",
-                "nav-location": "Kokapena",
-                "services-title": "Gure Zerbitzuak",
-                "services-desc": "Hardware eta software arazoak konpontzen ditugu ordenagailuetan eta ordenagailu eramangarrietan.",
-                "contact-title": "Jarri gurekin harremanetan",
-                "contact-desc": "Ordenagailuarekin laguntza behar duzu? Bidali mezua!",
-                "location-title": "Kokapena",
-                "location-desc": "<strong>Helbidea:</strong> Otxarkoaga Prestakuntza Zentroa, C/ Camino Arbolantxa 57 48004 Bilbo, Espainia."
-            }
-        };
-        
-        let currentLang = "es";
-        function changeLanguage() {
-            const languages = ["es", "en", "eu"];
-            currentLang = languages[(languages.indexOf(currentLang) + 1) % languages.length];
-            
-            for (const key in translations[currentLang]) {
-                document.getElementById(key).innerHTML = translations[currentLang][key];
-            }
-        }
-    </script>
+    <div class="horario">
+        <h3>Horario</h3>
+        <p>Lunes a Viernes: 11:20 - 14:00</p>
+        <p>Jueves: 12:15 - 14:00</p>
+    </div>
+    <footer>
+        &copy; 2025 PCDoctor - Todos los derechos reservados
+    </footer>
 </body>
 </html>
