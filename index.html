@@ -32,6 +32,10 @@
         <h2 id="contact-title">Contáctanos</h2>
         <p id="contact-desc">¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!</p>
     </section>
+    <section id="ubicacion">
+        <h2 id="location-title">Ubicación</h2>
+        <p id="location-desc"><strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España.</p>
+    </section>
     <script>
         const translations = {
             es: {
@@ -42,7 +46,9 @@
                 "services-title": "Nuestros Servicios",
                 "services-desc": "Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.",
                 "contact-title": "Contáctanos",
-                "contact-desc": "¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!"
+                "contact-desc": "¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!",
+                "location-title": "Ubicación",
+                "location-desc": "<strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España."
             },
             en: {
                 header: "PCDoctor - Computer Repair and Maintenance",
@@ -52,7 +58,9 @@
                 "services-title": "Our Services",
                 "services-desc": "We solve hardware and software problems on desktops and laptops.",
                 "contact-title": "Contact Us",
-                "contact-desc": "Need help with your computer? Send us a message!"
+                "contact-desc": "Need help with your computer? Send us a message!",
+                "location-title": "Location",
+                "location-desc": "<strong>Address:</strong> Otxarkoaga Training Center, C/ Camino Arbolantxa 57 48004 Bilbao, Spain."
             },
             eu: {
                 header: "PCDoctor - Ordenagailuen konponketa eta mantentzea",
@@ -62,7 +70,9 @@
                 "services-title": "Gure Zerbitzuak",
                 "services-desc": "Hardware eta software arazoak konpontzen ditugu ordenagailuetan eta ordenagailu eramangarrietan.",
                 "contact-title": "Jarri gurekin harremanetan",
-                "contact-desc": "Ordenagailuarekin laguntza behar duzu? Bidali mezua!"
+                "contact-desc": "Ordenagailuarekin laguntza behar duzu? Bidali mezua!",
+                "location-title": "Kokapena",
+                "location-desc": "<strong>Helbidea:</strong> Otxarkoaga Prestakuntza Zentroa, C/ Camino Arbolantxa 57 48004 Bilbo, Espainia."
             }
         };
         
@@ -72,7 +82,7 @@
             currentLang = languages[(languages.indexOf(currentLang) + 1) % languages.length];
             
             for (const key in translations[currentLang]) {
-                document.getElementById(key).textContent = translations[currentLang][key];
+                document.getElementById(key).innerHTML = translations[currentLang][key];
             }
         }
     </script>
