@@ -28,64 +28,171 @@
         .horario { text-align: center; margin-top: 20px; font-size: 18px; background: #222; padding: 15px; border-radius: 10px; }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll("section");
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    }
-                });
-            }, { threshold: 0.2 });
-            sections.forEach(section => observer.observe(section));
-        });
+        const languageData = {
+            es: {
+                header: "PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos",
+                nav: ["Servicios", "Contacto", "Ubicación"],
+                serviciosTitle: "Nuestros Servicios",
+                servicio1Title: "Reparación de Computadoras",
+                servicio1Desc: "Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.",
+                servicio2Title: "Mantenimiento Preventivo",
+                servicio2Desc: "Optimizamos el rendimiento de tu equipo con limpieza y actualizaciones.",
+                servicio3Title: "Eliminación de Virus",
+                servicio3Desc: "Eliminamos malware y protegemos tu sistema contra amenazas futuras.",
+                servicio4Title: "Instalación de Software",
+                servicio4Desc: "Instalamos y configuramos software según tus necesidades.",
+                contactoTitle: "Contáctanos",
+                contactoDesc: "¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!",
+                contactoName: "Tu Nombre",
+                contactoEmail: "Tu Correo",
+                contactoMessage: "Tu Mensaje",
+                contactoButton: "Enviar Mensaje",
+                ubicacionTitle: "Ubicación",
+                ubicacionDesc: "Dirección: Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao, España.",
+                horarioTitle: "Horario",
+                horario1: "Lunes a Viernes: 11:20 - 14:00",
+                horario2: "Jueves: 12:15 - 14:00",
+                footer: "© 2025 PCDoctor - Todos los derechos reservados"
+            },
+            en: {
+                header: "PCDoctor - Computer Repair and Maintenance",
+                nav: ["Services", "Contact", "Location"],
+                serviciosTitle: "Our Services",
+                servicio1Title: "Computer Repair",
+                servicio1Desc: "We solve hardware and software issues on desktops and laptops.",
+                servicio2Title: "Preventive Maintenance",
+                servicio2Desc: "We optimize your device's performance with cleaning and updates.",
+                servicio3Title: "Virus Removal",
+                servicio3Desc: "We remove malware and protect your system from future threats.",
+                servicio4Title: "Software Installation",
+                servicio4Desc: "We install and configure software according to your needs.",
+                contactoTitle: "Contact Us",
+                contactoDesc: "Need help with your computer? Send us a message!",
+                contactoName: "Your Name",
+                contactoEmail: "Your Email",
+                contactoMessage: "Your Message",
+                contactoButton: "Send Message",
+                ubicacionTitle: "Location",
+                ubicacionDesc: "Address: Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao, Spain.",
+                horarioTitle: "Schedule",
+                horario1: "Monday to Friday: 11:20 - 14:00",
+                horario2: "Thursday: 12:15 - 14:00",
+                footer: "© 2025 PCDoctor - All rights reserved"
+            },
+            eu: {
+                header: "PCDoctor - Ordenagailuen Konponketa eta Mantentze-lanak",
+                nav: ["Zerbitzuak", "Kontaktua", "Kokapena"],
+                serviciosTitle: "Gure Zerbitzuak",
+                servicio1Title: "Ordenagailuen Konponketa",
+                servicio1Desc: "Ordenagailu mahaiko eta eramangarrien hardware eta software arazoak konpontzen ditugu.",
+                servicio2Title: "Mantentze Prebentiboa",
+                servicio2Desc: "Zure ordenagailuaren errendimendua optimizatzen dugu garbiketa eta eguneratzeekin.",
+                servicio3Title: "Birusen Ezabatzea",
+                servicio3Desc: "Malware ezabatzen dugu eta zure sistema etorkizuneko mehatxuetatik babesten dugu.",
+                servicio4Title: "Softwarearen Instalazioa",
+                servicio4Desc: "Softwarea instalatzen eta konfiguratzen dugu zure beharretara egokitzen den moduan.",
+                contactoTitle: "Gurekin Harremanetan Jarri",
+                contactoDesc: "Ordenagailuarekin laguntza behar al duzu? Bidali mezua!",
+                contactoName: "Zure Izena",
+                contactoEmail: "Zure Posta Elektronikoa",
+                contactoMessage: "Zure Mezua",
+                contactoButton: "Mezua Bidali",
+                ubicacionTitle: "Kokapena",
+                ubicacionDesc: "Helbidea: Otxarkoagako Formazio Zentroa, C/ Camino Arbolantxa 57 48004 Bilbo, Espainia.",
+                horarioTitle: "Ordutegia",
+                horario1: "Astelehena - Ostirala: 11:20 - 14:00",
+                horario2: "Osteguna: 12:15 - 14:00",
+                footer: "© 2025 PCDoctor - Eskubide guztiak gordetakoak"
+            }
+        };
+
+        function changeLanguage(language) {
+            const data = languageData[language];
+
+            document.querySelector("header").textContent = data.header;
+            document.querySelectorAll("nav a")[0].textContent = data.nav[0];
+            document.querySelectorAll("nav a")[1].textContent = data.nav[1];
+            document.querySelectorAll("nav a")[2].textContent = data.nav[2];
+
+            document.querySelector("#servicios h2").textContent = data.serviciosTitle;
+            document.querySelectorAll(".service")[0].querySelector("h3").textContent = data.servicio1Title;
+            document.querySelectorAll(".service")[0].querySelector("p").textContent = data.servicio1Desc;
+            document.querySelectorAll(".service")[1].querySelector("h3").textContent = data.servicio2Title;
+            document.querySelectorAll(".service")[1].querySelector("p").textContent = data.servicio2Desc;
+            document.querySelectorAll(".service")[2].querySelector("h3").textContent = data.servicio3Title;
+            document.querySelectorAll(".service")[2].querySelector("p").textContent = data.servicio3Desc;
+            document.querySelectorAll(".service")[3].querySelector("h3").textContent = data.servicio4Title;
+            document.querySelectorAll(".service")[3].querySelector("p").textContent = data.servicio4Desc;
+
+            document.querySelector("#contacto h2").textContent = data.contactoTitle;
+            document.querySelector("#contacto p").textContent = data.contactoDesc;
+            document.querySelector("input[name='nombre']").placeholder = data.contactoName;
+            document.querySelector("input[name='email']").placeholder = data.contactoEmail;
+            document.querySelector("textarea[name='mensaje']").placeholder = data.contactoMessage;
+            document.querySelector("button").textContent = data.contactoButton;
+
+            document.querySelector("#ubicacion h2").textContent = data.ubicacionTitle;
+            document.querySelector("#ubicacion p").textContent = data.ubicacionDesc;
+
+            document.querySelector(".horario h3").textContent = data.horarioTitle;
+            document.querySelectorAll(".horario p")[0].textContent = data.horario1;
+            document.querySelectorAll(".horario p")[1].textContent = data.horario2;
+
+            document.querySelector("footer").textContent = data.footer;
+        }
     </script>
 </head>
 <body>
-    <header>PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos / Ordenagailuen konponketa eta mantentze-lanak</header>
+    <header>PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos</header>
     <nav>
-        <a href="#servicios">Servicios / Zerbitzuak</a>  
-        <a href="#contacto">Contacto / Kontaktua</a>
-        <a href="#ubicacion">Ubicación / Kokapena</a>
+        <a href="#servicios">Servicios</a>  
+        <a href="#contacto">Contacto</a>
+        <a href="#ubicacion">Ubicación</a>
     </nav>
+    <div style="text-align: center; padding: 10px;">
+        <button onclick="changeLanguage('es')">Español</button>
+        <button onclick="changeLanguage('en')">English</button>
+        <button onclick="changeLanguage('eu')">Euskera</button>
+    </div>
+
     <section id="servicios">
-        <h2>Nuestros Servicios / Gure Zerbitzuak</h2>
+        <h2>Nuestros Servicios</h2>
         <div class="services">
             <div class="service">
                 <i class="fas fa-tools"></i>
-                <h3>Reparación de Computadoras / Ordenagailuen Konponketa</h3>
-                <p>Solucionamos problemas de hardware y software en equipos de escritorio y portátiles. / Ordenagailu mahaiko eta eramangarrien hardware eta software arazoak konpontzen ditugu.</p>
+                <h3>Reparación de Computadoras</h3>
+                <p>Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.</p>
             </div>
             <div class="service">
                 <i class="fas fa-cogs"></i>
-                <h3>Mantenimiento Preventivo / Mantentze Prebentiboa</h3>
-                <p>Optimizamos el rendimiento de tu equipo con limpieza y actualizaciones. / Zure ordenagailuaren errendimendua optimizatzen dugu garbiketa eta eguneratzeekin.</p>
+                <h3>Mantenimiento Preventivo</h3>
+                <p>Optimizamos el rendimiento de tu equipo con limpieza y actualizaciones.</p>
             </div>
             <div class="service">
                 <i class="fa-solid fa-shield-virus"></i>
-                <h3>Eliminación de Virus / Birusen Ezabatzea</h3>
-                <p>Eliminamos malware y protegemos tu sistema contra amenazas futuras. / Malware ezabatzen dugu eta zure sistema etorkizuneko mehatxuetatik babesten dugu.</p>
+                <h3>Eliminación de Virus</h3>
+                <p>Eliminamos malware y protegemos tu sistema contra amenazas futuras.</p>
             </div>
             <div class="service">
                 <i class="fas fa-download"></i>
-                <h3>Instalación de Software / Softwarearen Instalazioa</h3>
-                <p>Instalamos y configuramos software según tus necesidades. / Softwarea instalatzen eta konfiguratzen dugu zure beharretara egokitzen den moduan.</p>
+                <h3>Instalación de Software</h3>
+                <p>Instalamos y configuramos software según tus necesidades.</p>
             </div>
         </div>
     </section>
     <section id="contacto">
-        <h2>Contáctanos / Gurekin Harremanetan Jarri</h2>
-        <p>¿Necesitas ayuda con tu equipo? ¡Envíanos un mensaje! / Ordenagailuarekin laguntza behar al duzu? Bidali mezua!</p>
+        <h2>Contáctanos</h2>
+        <p>¿Necesitas ayuda con tu computadora? ¡Envíanos un mensaje!</p>
         <form action="https://formspree.io/f/mjkgprrz" method="POST">
-            <input type="text" name="nombre" placeholder="Tu Nombre / Zure Izena" required>
-            <input type="email" name="email" placeholder="Tu Correo / Zure Posta Elektronikoa" required>
-            <textarea name="mensaje" placeholder="Tu Mensaje / Zure Mezua" required></textarea>
-            <button type="submit">Enviar Mensaje / Mezua Bidali</button>
+            <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            <input type="email" name="email" placeholder="Tu Correo" required>
+            <textarea name="mensaje" placeholder="Tu Mensaje" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
         </form>
     </section>
     <section id="ubicacion">
-        <h2>Ubicación / Kokapena</h2>
-        <p><strong>Dirección / Helbidea:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao, España .</p>
+        <h2>Ubicación</h2>
+        <p><strong>Dirección:</strong> Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao , España.</p>
         <div class="map-container">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.3070145446516!2d-2.909918684739903!3d43.25978997913719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e5078e8c3b7b7%3A0x5e0a0278071f1f9a!2sCentro%20Formativo%20Otxarkoaga!5e0!3m2!1ses!2ses!4v1647268987975!5m2!1ses!2ses" 
@@ -93,12 +200,12 @@
         </div>
     </section>
     <div class="horario">
-        <h3>Horario / Ordutegia</h3>
-        <p>Lunes a Viernes: 11:20 - 14:00 / Astelehena - Ostirala: 11:20 - 14:00</p>
-        <p>Jueves: 12:15 - 14:00 / Osteguna: 12:15 - 14:00</p>
+        <h3>Horario</h3>
+        <p>Lunes a Viernes: 11:20 - 14:00</p>
+        <p>Jueves: 12:15 - 14:00</p>
     </div>
     <footer>
-        &copy; 2025 PCDoctor - Todos los derechos reservados / PCDoctor - Eskubide guztiak gordetakoak
+        © 2025 PCDoctor - Todos los derechos reservados
     </footer>
 </body>
 </html>
