@@ -26,7 +26,7 @@
         footer { background: #111; color: white; text-align: center; padding: 20px; margin-top: 20px; }
         .horario { text-align: center; margin-top: 20px; font-size: 18px; background: #222; padding: 15px; border-radius: 10px; }
         .button-container { text-align: center; padding: 20px; }
-        button { padding: 10px 20px; font-size: 18px; margin: 5px; }
+        .button-container button { padding: 10px 20px; font-size: 18px; margin: 5px; }
     </style>
     <script>
         const languageData = {
@@ -151,6 +151,7 @@
         <a href="#ubicacion">Ubicación</a>
     </nav>
     <div class="button-container">
+        <!-- Aseguramos que los botones tengan el texto adecuado -->
         <button onclick="changeLanguage('es')">Español</button>
         <button onclick="changeLanguage('en')">English</button>
         <button onclick="changeLanguage('eu')">Euskera</button>
@@ -206,7 +207,3 @@
         <p>Jueves: 12:15 - 14:00</p>
     </div>
     <footer>
-        © 2025 PCDoctor - Todos los derechos reservados
-    </footer>
-</body>
-</html>
