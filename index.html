@@ -27,12 +27,14 @@
         .horario { text-align: center; margin-top: 20px; font-size: 18px; background: #222; padding: 15px; border-radius: 10px; }
         .button-container { text-align: center; padding: 20px; }
         .button-container button { padding: 10px 20px; font-size: 18px; margin: 5px; }
+        .prices { background: #111; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); text-align: center; }
+        .price-item { padding: 10px; margin: 10px 0; background: #222; border-radius: 5px; }
     </style>
     <script>
         const languageData = {
             es: {
                 header: "PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos",
-                nav: ["Servicios", "Contacto", "Ubicación"],
+                nav: ["Servicios", "Precios", "Contacto", "Ubicación"],
                 serviciosTitle: "Nuestros Servicios",
                 servicio1Title: "Reparación de Ordenadores",
                 servicio1Desc: "Solucionamos problemas de hardware y software en equipos de escritorio y portátiles.",
@@ -47,17 +49,22 @@
                 contactoName: "Tu Nombre",
                 contactoEmail: "Tu Correo",
                 contactoMessage: "Tu Mensaje",
-                contactoButton: "Español",
+                contactoButton: "Enviar mensaje",
                 ubicacionTitle: "Ubicación",
                 ubicacionDesc: "Dirección: Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao, España.",
                 horarioTitle: "Horario",
                 horario1: "Lunes a Viernes: 11:20 - 14:00",
                 horario2: "Jueves: 12:15 - 14:00",
-                footer: "© 2025 PCDoctor - Todos los derechos reservados"
+                footer: "© 2025 PCDoctor - Todos los derechos reservados",
+                preciosTitle: "Nuestros Precios",
+                precio1: "Reparación de Ordenadores: 50€",
+                precio2: "Instalación de Sistemas Operativos: 30€",
+                precio3: "Mantenimiento Preventivo: 40€",
+                precio4: "Eliminación de Virus: 20€"
             },
             en: {
                 header: "PCDoctor - Computer Repair and Maintenance",
-                nav: ["Services", "Contact", "Location"],
+                nav: ["Services", "Prices", "Contact", "Location"],
                 serviciosTitle: "Our Services",
                 servicio1Title: "Computer Repair",
                 servicio1Desc: "We solve hardware and software issues on desktops and laptops.",
@@ -72,17 +79,22 @@
                 contactoName: "Your Name",
                 contactoEmail: "Your Email",
                 contactoMessage: "Your Message",
-                contactoButton: "Español",
+                contactoButton: "Send Message",
                 ubicacionTitle: "Location",
                 ubicacionDesc: "Address: Centro Formativo de Otxarkoaga, C/ Camino Arbolantxa 57 48004 Bilbao, Spain.",
                 horarioTitle: "Schedule",
                 horario1: "Monday to Friday: 11:20 - 14:00",
                 horario2: "Thursday: 12:15 - 14:00",
-                footer: "© 2025 PCDoctor - All rights reserved"
+                footer: "© 2025 PCDoctor - All rights reserved",
+                preciosTitle: "Our Prices",
+                precio1: "Computer Repair: 50€",
+                precio2: "Operating Systems Installation: 30€",
+                precio3: "Preventive Maintenance: 40€",
+                precio4: "Virus Removal: 20€"
             },
             eu: {
                 header: "PCDoctor - Ordenagailuen Konponketa eta Mantentze-lanak",
-                nav: ["Zerbitzuak", "Kontaktua", "Kokapena"],
+                nav: ["Zerbitzuak", "Prezioak", "Kontaktua", "Kokapena"],
                 serviciosTitle: "Gure Zerbitzuak",
                 servicio1Title: "Ordenagailuen Konponketa",
                 servicio1Desc: "Ordenagailu mahaiko eta eramangarrien hardware eta software arazoak konpontzen ditugu.",
@@ -97,13 +109,18 @@
                 contactoName: "Zure Izena",
                 contactoEmail: "Zure Posta Elektronikoa",
                 contactoMessage: "Zure Mezua",
-                contactoButton: "Español",
+                contactoButton: "Bidali mezua",
                 ubicacionTitle: "Kokapena",
                 ubicacionDesc: "Helbidea: Otxarkoagako Formazio Zentroa, C/ Camino Arbolantxa 57 48004 Bilbo, Espainia.",
                 horarioTitle: "Ordutegia",
                 horario1: "Astelehena - Ostirala: 11:20 - 14:00",
                 horario2: "Osteguna: 12:15 - 14:00",
-                footer: "© 2025 PCDoctor - Eskubide guztiak gordetakoak"
+                footer: "© 2025 PCDoctor - Eskubide guztiak gordetakoak",
+                preciosTitle: "Gure Prezioak",
+                precio1: "Ordenagailuen Konponketa: 50€",
+                precio2: "Sistema Eragileen Instalazioa: 30€",
+                precio3: "Mantentze Prebentiboa: 40€",
+                precio4: "Birusen Ezabatzea: 20€"
             }
         };
 
@@ -114,6 +131,7 @@
             document.querySelectorAll("nav a")[0].textContent = data.nav[0];
             document.querySelectorAll("nav a")[1].textContent = data.nav[1];
             document.querySelectorAll("nav a")[2].textContent = data.nav[2];
+            document.querySelectorAll("nav a")[3].textContent = data.nav[3];
 
             document.querySelector("#servicios h2").textContent = data.serviciosTitle;
             document.querySelectorAll(".service")[0].querySelector("h3").textContent = data.servicio1Title;
@@ -130,7 +148,7 @@
             document.querySelector("input[name='nombre']").placeholder = data.contactoName;
             document.querySelector("input[name='email']").placeholder = data.contactoEmail;
             document.querySelector("textarea[name='mensaje']").placeholder = data.contactoMessage;
-            document.querySelector("button").textContent = data.contactoButton;
+            document.querySelector("#contacto button").textContent = data.contactoButton;
 
             document.querySelector("#ubicacion h2").textContent = data.ubicacionTitle;
             document.querySelector("#ubicacion p").textContent = data.ubicacionDesc;
@@ -140,13 +158,20 @@
             document.querySelectorAll(".horario p")[1].textContent = data.horario2;
 
             document.querySelector("footer").textContent = data.footer;
+
+            document.querySelector("#precios h2").textContent = data.preciosTitle;
+            document.querySelectorAll(".price-item")[0].textContent = data.precio1;
+            document.querySelectorAll(".price-item")[1].textContent = data.precio2;
+            document.querySelectorAll(".price-item")[2].textContent = data.precio3;
+            document.querySelectorAll(".price-item")[3].textContent = data.precio4;
         }
     </script>
 </head>
 <body>
     <header>PCDoctor - Reparación y Mantenimiento de Sistemas Informáticos</header>
     <nav>
-        <a href="#servicios">Servicios</a>  
+        <a href="#servicios">Servicios</a>
+        <a href="#precios">Precios</a>
         <a href="#contacto">Contacto</a>
         <a href="#ubicacion">Ubicación</a>
     </nav>
@@ -158,6 +183,7 @@
 
     <section id="servicios">
         <h2>Nuestros Servicios</h2>
+    
         <div class="services">
             <div class="service">
                 <i class="fas fa-tools"></i>
@@ -181,6 +207,18 @@
             </div>
         </div>
     </section>
+
+    <section id="precios">
+        <h2>Precios</h2>
+        <div class="prices">
+            <div class="price-item">Reparación de Ordenadores: 50€</div>
+            <div class="price-item">Instalación de Sistemas Operativos: 25€</div>
+            <div class="price-item">Mantenimiento Preventivo: 20€</div>
+            <div class="price-item">Eliminación de Virus: 15€</div>
+            <div class="price-item">Revision: 10€</div>
+        </div>
+    </section>
+
     <section id="contacto">
         <h2>Contáctanos</h2>
         <p>¿Necesitas ayuda con tu equipo? ¡Envíanos un mensaje!</p>
@@ -209,4 +247,4 @@
         © 2025 PCDoctor - Todos los derechos reservados
     </footer>
 </body>
-</html> 
+</html>
